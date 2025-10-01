@@ -12,28 +12,27 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 
-    <style>
+  <style>
     :root{
       --bg:#0b0e1a;
       --bg-soft:#11152a;
       --panel:#171c38;
       --text:#f6f7ff;
       --muted:#c7c9e1;
-      --accent:#ff6ec7;   /* warm pink */
-      --accent-2:#7af0ff; /* neon blue */
-      --accent-3:#ffd66e; /* starlight */
+      --accent:#ff6ec7;   /* rose néon */
+      --accent-2:#7af0ff; /* bleu néon */
+      --accent-3:#ffd66e; /* lumière étoile */
       --shadow:0 6px 0 #00000055, 0 2px 0 #00000066 inset;
       --radius:18px;
       --space:clamp(16px, 2vw, 28px);
       --max:1120px;
     }
 
-    /* Basic reset */
     *,*::before,*::after{ box-sizing:border-box }
     html,body{ height:100% }
     body{
       margin:0;
-      font: 18px/1.6 Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+      font: 18px/1.6 Inter, system-ui, sans-serif;
       color:var(--text);
       background: radial-gradient(1200px 800px at 20% -10%, #1a214d 0%, transparent 60%),
                   radial-gradient(900px 600px at 100% 0%, #1e2144 0%, transparent 55%),
@@ -41,35 +40,12 @@
       overflow-x:hidden;
     }
 
-    /* Pixel vibe helpers */
-    .pixel-border{
-      border:4px solid #00000055;
-      box-shadow: var(--shadow);
-      image-rendering: pixelated;
-      border-radius: 10px;
-    }
-    .btn{
-      display:inline-block;
-      padding:14px 20px;
-      border-radius:10px;
-      background:linear-gradient(180deg, var(--accent), #e44fae 60%, #c93f9a);
-      color:#160416;
-      font-weight:800;
-      text-decoration:none;
-      box-shadow:0 6px 0 #7e2b62;
-      transition:transform .06s ease, box-shadow .06s ease, filter .2s ease;
-      border:2px solid #ff9edf;
-    }
-    .btn:focus{ outline:3px dashed var(--accent-2); outline-offset:4px }
+    .pixel-border{ border:4px solid #00000055; box-shadow: var(--shadow); border-radius: 10px; image-rendering: pixelated; }
+    .btn{ display:inline-block; padding:14px 20px; border-radius:10px; background:linear-gradient(180deg, var(--accent), #e44fae 60%, #c93f9a); color:#160416; font-weight:800; text-decoration:none; box-shadow:0 6px 0 #7e2b62; transition:transform .06s ease, box-shadow .06s ease, filter .2s ease; border:2px solid #ff9edf; }
     .btn:hover{ transform:translateY(1px); box-shadow:0 4px 0 #7e2b62; filter:saturate(1.1) }
-    .btn.secondary{
-      background:linear-gradient(180deg, var(--accent-2), #4bc5d1 60%, #3ba9b5);
-      color:#041316;
-      border-color:#bff6ff;
-      box-shadow:0 6px 0 #1b6a73;
-    }
+    .btn.secondary{ background:linear-gradient(180deg, var(--accent-2), #4bc5d1 60%, #3ba9b5); color:#041316; border-color:#bff6ff; box-shadow:0 6px 0 #1b6a73; }
 
-    /* STARFIELD */
+    /* Etoiles animées */
     .stars,.stars2,.stars3{
       position:fixed; inset:0; z-index:-1; background:transparent;
       background-image:
@@ -83,138 +59,45 @@
     }
     .stars2{ filter:blur(0.5px); animation-duration:12s; opacity:.6 }
     .stars3{ filter:blur(1px); animation-duration:16s; opacity:.4 }
-    @keyframes twinkle{
-      0%,100%{ transform:translateY(0) }
-      50%{ transform:translateY(-10px) }
-    }
-    @media (prefers-reduced-motion: reduce){
-      .stars,.stars2,.stars3{ animation:none }
-      .btn{ transition:none }
-    }
+    @keyframes twinkle{ 0%,100%{ transform:translateY(0) } 50%{ transform:translateY(-10px) } }
 
-    /* Header */
-    header{
-      position:sticky; top:0; backdrop-filter: blur(6px);
-      background:linear-gradient(180deg, #0b0e1acc, #0b0e1a00);
-      border-bottom:1px solid #ffffff0e;
-      z-index:40;
-    }
-    .nav{
-      max-width:var(--max); margin:0 auto; padding:10px var(--space);
-      display:flex; align-items:center; gap:16px; justify-content:space-between;
-    }
-    .logo{
-      font-family:"Press Start 2P", ui-monospace, monospace;
-      letter-spacing:1px; font-size:18px; color:var(--accent-2);
-      text-shadow:0 2px 0 #000;
-    }
-    nav a{
-      color:var(--muted); text-decoration:none; font-weight:600; padding:8px 12px; border-radius:8px;
-    }
-    nav a:focus{ outline:3px dashed var(--accent-2); outline-offset:4px }
+    header{ position:sticky; top:0; backdrop-filter: blur(6px); background:linear-gradient(180deg, #0b0e1acc, #0b0e1a00); border-bottom:1px solid #ffffff0e; z-index:40; }
+    .nav{ max-width:var(--max); margin:0 auto; padding:10px var(--space); display:flex; align-items:center; justify-content:space-between; }
+    .logo{ font-family:"Press Start 2P", monospace; font-size:18px; color:var(--accent-2); text-shadow:0 2px 0 #000; }
+    nav a{ color:var(--muted); text-decoration:none; font-weight:600; padding:8px 12px; border-radius:8px; }
     nav a:hover{ color:var(--text) }
 
-    /* Hero */
-    .hero{
-      max-width:var(--max); margin:0 auto; padding: clamp(40px, 8vw, 120px) var(--space);
-      display:grid; grid-template-columns:1.2fr .8fr; gap:clamp(18px, 4vw, 40px); align-items:center;
-    }
-    .eyebrow{
-      font-family:"Press Start 2P", ui-monospace, monospace;
-      color:var(--accent-3); font-size:12px; letter-spacing:2px;
-    }
-    h1{
-      margin:.2em 0 .3em; font-size:clamp(34px, 5vw, 64px);
-      line-height:1.1; text-wrap:balance;
-      font-weight:800;
-      text-shadow:0 4px 0 #00000055;
-    }
-    .lead{ color:var(--muted); font-size:clamp(18px, 2.2vw, 22px) }
-    .cta{ margin-top:22px; display:flex; flex-wrap:wrap; gap:12px }
-    .hero-card{
-      background:linear-gradient(180deg, #121735, #0e132a);
-      border:1px solid #ffffff1f; padding:20px; border-radius:var(--radius);
-      box-shadow: var(--shadow);
-    }
-    .hero-card img{
-      width:100%; height:auto; display:block; border-radius:12px;
-      border:2px solid #ffffff12; image-rendering: pixelated;
-    }
-    .hero-card figcaption{
-      font-size:14px; color:var(--muted); margin-top:8px; text-align:center;
-    }
+    .hero{ max-width:var(--max); margin:0 auto; padding: clamp(40px, 8vw, 120px) var(--space); display:grid; grid-template-columns:1.2fr .8fr; gap:40px; align-items:center; }
+    .eyebrow{ font-family:"Press Start 2P", monospace; color:var(--accent-3); font-size:12px; letter-spacing:2px; }
+    h1{ margin:.2em 0 .3em; font-size:clamp(34px, 5vw, 64px); line-height:1.1; font-weight:800; text-shadow:0 4px 0 #00000055; }
+    .lead{ color:var(--muted); font-size:20px; }
+    .cta{ margin-top:22px; display:flex; gap:12px; flex-wrap:wrap; }
+    .hero-card{ background:#121735; border:1px solid #ffffff1f; padding:20px; border-radius:var(--radius); }
+    .hero-card img{ width:100%; border-radius:12px; image-rendering:pixelated; }
 
-    /* Sections */
-    section{ padding: 64px var(--space) }
-    .wrap{ max-width:var(--max); margin:0 auto }
-    .h2{
-      font-family:"Press Start 2P", ui-monospace, monospace;
-      font-size: clamp(22px, 3vw, 28px);
-      letter-spacing:1px; margin:0 0 14px; color:var(--accent-2);
-      text-shadow:0 2px 0 #00000055;
-    }
+    section{ padding:64px var(--space); }
+    .wrap{ max-width:var(--max); margin:0 auto; }
+    .h2{ font-family:"Press Start 2P", monospace; font-size:28px; margin:0 0 14px; color:var(--accent-2); text-shadow:0 2px 0 #00000055; }
     .grid-2{ display:grid; grid-template-columns:1fr 1fr; gap:24px }
-    .panel{
-      background:var(--panel); border:1px solid #ffffff12; border-radius:var(--radius); padding:22px;
-      box-shadow: var(--shadow);
-    }
-    .kpi{
-      display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:12px;
-    }
-    .kpi div{ background:#0d122a; padding:12px; border-radius:12px; border:1px solid #ffffff14; text-align:center }
+    .panel{ background:var(--panel); border:1px solid #ffffff12; border-radius:var(--radius); padding:22px; }
+    .kpi{ display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:12px; }
     .kpi strong{ display:block; font-size:22px; color:var(--accent-3) }
 
-    /* Moodboard gallery */
-    .gallery{
-      display:grid; grid-template-columns: repeat(12, 1fr); gap:12px;
-    }
-    .gallery figure{
-      grid-column: span 4;
-      background: #0f1430; border:1px solid #ffffff1a; border-radius:14px; padding:10px;
-    }
-    .gallery img{
-      width:100%; display:block; border-radius:10px; image-rendering: pixelated;
-      aspect-ratio: 1 / 1; object-fit: cover;
-    }
+    .gallery{ display:grid; grid-template-columns: repeat(12, 1fr); gap:12px; }
+    .gallery figure{ grid-column: span 4; background:#0f1430; border:1px solid #ffffff1a; border-radius:14px; padding:10px; }
+    .gallery img{ width:100%; border-radius:10px; image-rendering:pixelated; object-fit:cover; }
     .gallery figcaption{ font-size:14px; color:var(--muted); margin-top:6px }
 
-    /* Features list */
     .features{ display:grid; grid-template-columns:repeat(3, 1fr); gap:14px }
-    .feature{
-      background:#0d122a; border:1px solid #ffffff17; padding:18px; border-radius:14px;
-    }
-    .feature h3{
-      margin:0 0 8px; font-size:18px; color:var(--accent);
-      font-family:"Press Start 2P", ui-monospace, monospace; letter-spacing:1px;
-    }
+    .feature{ background:#0d122a; border:1px solid #ffffff17; padding:18px; border-radius:14px; }
+    .feature h3{ margin:0 0 8px; font-size:18px; color:var(--accent); font-family:"Press Start 2P", monospace; }
 
-    /* Newsletter (no backend; mailto fallback) */
-    .newsletter form{
-      display:flex; gap:10px; flex-wrap:wrap; margin-top:10px;
-    }
-    input[type="email"]{
-      flex:1 1 260px; padding:14px 16px; border-radius:10px; border:2px solid #27305f;
-      background:#0c1026; color:var(--text); font-size:16px;
-    }
+    .newsletter form{ display:flex; gap:10px; flex-wrap:wrap; margin-top:10px; }
+    input[type="email"]{ flex:1 1 260px; padding:14px 16px; border-radius:10px; border:2px solid #27305f; background:#0c1026; color:var(--text); font-size:16px; }
     input[type="email"]::placeholder{ color:#93a0d7 }
-    .small{ font-size:14px; color:var(--muted) }
 
-    /* Footer */
     footer{ padding:40px var(--space); border-top:1px solid #ffffff0e; color:var(--muted) }
-    .foot{ max-width:var(--max); margin:0 auto; display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap }
-
-    /* Responsive */
-    @media (max-width: 940px){
-      .hero{ grid-template-columns:1fr; padding-top:54px }
-      .grid-2{ grid-template-columns:1fr }
-      .features{ grid-template-columns:1fr 1fr }
-      .gallery figure{ grid-column: span 6 }
-    }
-    @media (max-width: 640px){
-      .features{ grid-template-columns:1fr }
-      .gallery{ gap:10px }
-      .gallery figure{ grid-column: span 12 }
-    }
+    .foot{ max-width:var(--max); margin:0 auto; display:flex; justify-content:space-between; flex-wrap:wrap }
   </style>
 </head>
 <body>
@@ -224,8 +107,8 @@
 
   <header>
     <div class="nav">
-      <div class="logo" aria-label="Étoiles Oubliées">ÉTOILES OUBLIÉES</div>
-      <nav aria-label="Navigation principale">
+      <div class="logo">ÉTOILES OUBLIÉES</div>
+      <nav>
         <a href="#concept">Concept</a>
         <a href="#gameplay">Gameplay</a>
         <a href="#valeurs">Valeurs</a>
@@ -237,119 +120,114 @@
 
   <main>
     <!-- HERO -->
-    <section class="hero" aria-labelledby="hero-title">
+    <section class="hero">
       <div>
         <div class="eyebrow">RETRO 8-BIT • ACCESSIBLE • INCLUSIF</div>
-        <h1 id="hero-title">La mémoire est le labyrinthe.<br/>L’amour est la boussole.</h1>
+        <h1>La mémoire est le labyrinthe.<br/>L’amour est la boussole.</h1>
         <p class="lead">
-          Dans <strong>Étoiles Oubliées</strong>, une aventure douce en labyrinthe, chaque couloir est un souvenir et un monstre
-          symbolise l’oubli. Conçu pour les seniors : textes lisibles, rythme calme et commandes simples.
+          Dans <strong>Étoiles Oubliées</strong>, chaque couloir est un souvenir et un monstre symbolise l’oubli.  
+          Conçu pour les seniors : textes lisibles, rythme calme et commandes simples.
         </p>
         <div class="cta">
           <a class="btn" href="#newsletter">Recevoir des nouvelles</a>
-          <a class="btn secondary" href="#gameplay" aria-describedby="demo-note">Découvrir le gameplay</a>
+          <a class="btn secondary" href="#gameplay">Découvrir le gameplay</a>
         </div>
-        <p id="demo-note" class="small" style="margin-top:8px">Accessible clavier, manette ou tactile.</p>
       </div>
 
       <figure class="hero-card pixel-border">
-        <img alt="Personnage pixelisé de grand-mère sur fond étoilé" src="moodboard-grandma.png" />
+        <!-- 🔁 Persona sprite -->
+        <img src="images/persona.png" alt="Personnage pixelisé senior" />
         <figcaption>Notre persona — une exploratrice chaleureuse et curieuse.</figcaption>
       </figure>
     </section>
 
     <!-- CONCEPT -->
-    <section id="concept" aria-labelledby="concept-h" class="wrap">
-      <h2 id="concept-h" class="h2">Concept</h2>
+    <section id="concept" class="wrap">
+      <h2 class="h2">Concept</h2>
       <div class="grid-2">
         <div class="panel">
           <p>
             <strong>Le labyrinthe = la mémoire.</strong> Les chemins apparaissent et disparaissent, comme les souvenirs.
-            De petites énigmes permettent de stabiliser les souvenirs et d’éclairer la sortie. Chaque niveau terminé
-            rallume une étoile dans une constellation — les moments que l’on choisit de garder.
+            De petites énigmes permettent de stabiliser les souvenirs et d’éclairer la sortie.
+            Chaque niveau rallume une étoile dans une constellation.
           </p>
-          <div class="kpi" role="list">
-            <div role="listitem"><strong>8-bit</strong><span>style rétro chaleureux</span></div>
-            <div role="listitem"><strong>Sans chrono</strong><span>rythme apaisé</span></div>
-            <div role="listitem"><strong>Inclusif</strong><span>histoires LGBTQ+</span></div>
-          </div>
         </div>
         <div class="panel">
-          <h3 style="margin:0 0 6px">Pourquoi ce jeu</h3>
+          <h3>Pourquoi ce jeu</h3>
           <p>
-            Étoiles Oubliées célèbre la mémoire sans la médicaliser. C’est un jeu sur les liens : partenaires, amis,
-            familles choisies — à travers les générations. Accessible à tous : gros caractères, fort contraste,
-            commandes simples, indices optionnels et aide sonore.
+            Étoiles Oubliées célèbre la mémoire et les liens humains.  
+            Accessible : gros caractères, fort contraste, commandes simples et aide sonore.
           </p>
         </div>
       </div>
     </section>
 
     <!-- GAMEPLAY -->
-    <section id="gameplay" aria-labelledby="gameplay-h" class="wrap">
-      <h2 id="gameplay-h" class="h2">Gameplay</h2>
+    <section id="gameplay" class="wrap">
+      <h2 class="h2">Gameplay</h2>
       <div class="features">
         <div class="feature">
           <h3>Explorer</h3>
-          <p>Avancer dans un labyrinthe serein qui évolue doucement. Commandes : flèches, ZQSD ou gestes tactiles.</p>
+          <p>Avancer dans un labyrinthe qui évolue doucement.</p>
         </div>
         <div class="feature">
           <h3>Se souvenir</h3>
-          <p>Énigmes de mémoire courtes : associer des paires, répéter des couleurs, remettre une histoire dans l’ordre. Pas d’échec punitif, juste des essais doux.</p>
+          <p>Énigmes de mémoire courtes : associer des paires, répéter des couleurs, remettre une histoire dans l’ordre.</p>
         </div>
         <div class="feature">
           <h3>Rayonner</h3>
-          <p>Chaque souvenir retrouvé allume une balise qui repousse l’<em>Oubli</em> — une ombre abstraite et bienveillante.</p>
+          <p>Chaque souvenir retrouvé allume une étoile et repousse l’Oubli.</p>
         </div>
       </div>
     </section>
 
-    <!-- INCLUSION -->
-    <section id="valeurs" aria-labelledby="valeurs-h" class="wrap">
-      <h2 id="valeurs-h" class="h2">Valeurs & Inclusion</h2>
+    <!-- VALEURS -->
+    <section id="valeurs" class="wrap">
+      <h2 class="h2">Valeurs & Inclusion</h2>
       <div class="panel">
         <p>
-          Les histoires mettent en scène des personnages LGBTQ+ à différents âges de la vie — tendresse, humour,
-          courage du quotidien. La représentation est pensée comme joyeuse et authentique.
+          Histoires LGBTQ+ à différents âges de la vie — tendresse, humour, courage du quotidien.
         </p>
         <ul>
           <li>Pronoms et prénoms personnalisables</li>
           <li>Sous-titres et textes lisibles</li>
-          <li>Palette adaptée aux daltoniens & fort contraste</li>
+          <li>Palette adaptée aux daltoniens</li>
         </ul>
       </div>
     </section>
 
     <!-- MOODBOARD -->
-    <section id="moodboard" aria-labelledby="moodboard-h" class="wrap">
-      <h2 id="moodboard-h" class="h2">Moodboard (8-bit)</h2>
-      <div class="gallery" role="list">
-        <figure role="listitem">
-          <img src="moodboard-01.png" alt="Affiche pixel art Memory Space Labyrinth avec labyrinthe et icônes spatiales" />
-          <figcaption>Le labyrinthe comme mémoire — palette étoilée.</figcaption>
+    <section id="moodboard" class="wrap">
+      <h2 class="h2">Moodboard (8-bit)</h2>
+      <div class="gallery">
+        <figure>
+          <!-- 🔁 Moodboard 1 -->
+          <img src="images/moodboard-01.png" alt="Affiche Memory Space Labyrinth" />
+          <figcaption>Le labyrinthe comme mémoire.</figcaption>
         </figure>
-        <figure role="listitem">
-          <img src="moodboard-02.png" alt="Affiche Labyrinth in Space Memory avec fusée et néons" />
+        <figure>
+          <!-- 🔁 Moodboard 2 -->
+          <img src="images/moodboard-02.png" alt="Affiche Labyrinth in Space Memory" />
           <figcaption>Typographie rétro et icônes ludiques.</figcaption>
         </figure>
-        <figure role="listitem">
-          <img src="moodboard-03.png" alt="Personnage pixelisé senior en robe rouge" />
-          <figcaption>Sprite du persona — chaleureux et familier.</figcaption>
+        <figure>
+          <!-- 🔁 Moodboard 3 -->
+          <img src="images/moodboard-03.png" alt="Sprite senior pixel art" />
+          <figcaption>Sprite du persona.</figcaption>
         </figure>
       </div>
     </section>
 
     <!-- NEWSLETTER -->
-    <section id="newsletter" aria-labelledby="newsletter-h" class="wrap newsletter">
-      <h2 id="newsletter-h" class="h2">Restez informés</h2>
+    <section id="newsletter" class="wrap newsletter">
+      <h2 class="h2">Restez informés</h2>
       <div class="panel">
-        <p>Laissez votre e-mail et recevez un lien vers la démo jouable dès qu’elle sera prête. Pas de spam.</p>
+        <p>Laissez votre e-mail et recevez un lien vers la démo jouable.</p>
         <form action="mailto:team@votre-studio.com" method="post" enctype="text/plain">
           <label class="sr-only" for="email">E-mail</label>
-          <input id="email" name="email" type="email" inputmode="email" placeholder="vous@exemple.com" required />
+          <input id="email" name="email" type="email" placeholder="vous@exemple.com" required />
           <button class="btn" type="submit">Prévenez-moi</button>
         </form>
-        <p class="small" style="margin-top:8px">En soumettant, vous acceptez de recevoir des nouvelles d’Étoiles Oubliées.</p>
       </div>
     </section>
   </main>
@@ -370,9 +248,7 @@
   </script>
 
   <style>
-    .sr-only{
-      position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0
-    }
+    .sr-only{ position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0 }
   </style>
 </body>
 </html>
