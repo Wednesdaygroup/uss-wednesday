@@ -2,7 +2,8 @@
     "name": "USS Wednesday",
     "description": "",
     "dependencies": {
-        "device": "*"
+        "device": "*",
+        "uss-wednesday": "github:hugo2028/uss-wednesday#master"
     },
     "files": [
         "main.blocks",

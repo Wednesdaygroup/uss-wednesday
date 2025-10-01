@@ -1,13 +1,114 @@
-// Code généré automatiquement. Ne pas modifier.
+// Auto-generated code. Do not edit.
+namespace myImages {
+
+    helpers._registerFactory("image", function(name: string) {
+        switch(helpers.stringTrim(name)) {
+            case "myTiles.tile4":return img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+`;
+            case "myTiles.tile5":
+            case "myTile1":return img`
+f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f f f f f f 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f f f f f f 
+`;
+            case "myTiles.tile6":
+            case "myTile":return img`
+c c c c c c c c c c c c c c c c 
+c c c c c c c c c c c c c c c c 
+c c c c a a a a a a a a c c a a 
+c c c c c c c c c c c c c c c c 
+c c a c a a a c c a a a a a a c 
+c c a c a 1 1 1 1 1 c c c c c c 
+c c a c a 1 a a a 1 a c c a a a 
+c c a c a 1 a 3 a 1 a a c a a a 
+c c a c a 1 a a 3 1 c c c c c c 
+c c a c a 1 1 1 1 1 a a a a c c 
+c c c c a c a a c a 3 3 3 3 a c 
+c c c c a c a a c a 3 3 c c c c 
+c c a c a c c c c a 3 c c a a a 
+c c a c a c a a c a 3 c c a 3 3 
+c c a c a c a a c a 3 c a 3 3 3 
+c c a c c c a a c a a c a 3 3 a 
+`;
+            case "myTiles.tile7":
+            case "myTile0":return img`
+f f 1 1 f f f f f f f f f f f f 
+f f 1 1 f f f f f f f f f f f f 
+f f 1 1 f . f f f f f f f f f f 
+f f 1 1 f f f f f f f f f f f f 
+f f 1 1 . f f f f f f f f f f f 
+f f 1 1 f f f f f f f f f f f f 
+f f 1 1 f f f f f f f f f f f f 
+f f 1 1 f f f f f f f f f f f f 
+f f 1 1 f f f f f f f f f f f f 
+f f 1 1 f f f f f f f f f f f f 
+f f 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+f f 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f f f f f f 
+`;
+        }
+        return null;
+    })
+
+    helpers._registerFactory("animation", function(name: string) {
+        switch(helpers.stringTrim(name)) {
+
+        }
+        return null;
+    })
+
+    helpers._registerFactory("song", function(name: string) {
+        switch(helpers.stringTrim(name)) {
+
+        }
+        return null;
+    })
+
+}
+// Auto-generated code. Do not edit.
+
+// Auto-generated code. Do not edit.
 namespace myTiles {
     //% fixedInstance jres blockIdentity=images._tile
-    export const transparency16 = image.ofBuffer(hex``);
+    export const tile4 = image.ofBuffer(hex``);
     //% fixedInstance jres blockIdentity=images._tile
-    export const tile3 = image.ofBuffer(hex``);
+    export const tile5 = image.ofBuffer(hex``);
     //% fixedInstance jres blockIdentity=images._tile
-    export const tile1 = image.ofBuffer(hex``);
+    export const tile6 = image.ofBuffer(hex``);
     //% fixedInstance jres blockIdentity=images._tile
-    export const tile2 = image.ofBuffer(hex``);
+    export const tile7 = image.ofBuffer(hex``);
 
     helpers._registerFactory("tilemap", function(name: string) {
         switch(helpers.stringTrim(name)) {
@@ -29,23 +130,23 @@ namespace myTiles {
 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 
 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 
 . 2 2 2 2 2 . 2 2 2 2 2 2 2 2 2 
-`, [myTiles.transparency16,sprites.builtin.oceanDepths8,sprites.castle.tilePath1,sprites.castle.tilePath4,sprites.castle.tilePath7,sprites.castle.tilePath8,sprites.castle.tilePath5], TileScale.Sixteen);
+`, [myTiles.tile4,sprites.builtin.oceanDepths8,sprites.castle.tilePath1,sprites.castle.tilePath4,sprites.castle.tilePath7,sprites.castle.tilePath8,sprites.castle.tilePath5], TileScale.Sixteen);
         }
         return null;
     })
 
     helpers._registerFactory("tile", function(name: string) {
         switch(helpers.stringTrim(name)) {
-            case "transparency16":return transparency16;
+            case "tile4":return myTiles.tile4;
             case "myTile1":
-            case "tile3":return tile3;
+            case "tile5":return myTiles.tile5;
             case "myTile":
-            case "tile1":return tile1;
+            case "tile6":return myTiles.tile6;
             case "myTile0":
-            case "tile2":return tile2;
+            case "tile7":return myTiles.tile7;
         }
         return null;
     })
 
 }
-// Code généré automatiquement. Ne pas modifier.
+// Auto-generated code. Do not edit.
