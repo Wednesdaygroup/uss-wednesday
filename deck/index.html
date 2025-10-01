@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Présentation — Étoiles Oubliées</title>
+
+  <!-- Police rétro -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#0b0e1a;
+      --bg-soft:#11152a;
+      --panel:#171c38;
+      --text:#f6f7ff;
+      --muted:#c7c9e1;
+      --accent:#ff6ec7;
+      --accent-2:#7af0ff;
+      --accent-3:#ffd66e;
+      --radius:18px;
+      --max:1080px;
+    }
+
+    body{
+      margin:0;
+      font: 18px/1.6 Inter, system-ui, sans-serif;
+      color:var(--text);
+      background: radial-gradient(1000px 800px at 20% -10%, #1a214d 0%, transparent 60%),
+                  radial-gradient(800px 600px at 100% 0%, #1e2144 0%, transparent 55%),
+                  var(--bg);
+      overflow-x:hidden;
+    }
+
+    section{
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:60px 20px;
+    }
+    .slide{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:40px;
+      max-width:var(--max);
+      margin:0 auto;
+      align-items:center;
+    }
+    .slide h2{
+      font-family:"Press Start 2P", monospace;
+      font-size:28px;
+      color:var(--accent-2);
+      margin:0 0 16px;
+    }
+    .slide p{
+      font-size:18px;
+      color:var(--muted);
+    }
+    .slide img{
+      width:100%;
+      border-radius:var(--radius);
+      image-rendering:pixelated;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Slide 1 -->
+  <section>
+    <div class="slide">
+      <div>
+        <h2>Wednesday Ltd Game Design</h2>
+        <p>Studio créatif qui imagine des expériences ludiques rétro et inclusives.</p>
+      </div>
+      <img src="enigme-02.png" alt="Persona pixelisé" />
+    </div>
+  </section>
+
+  <!-- Slide 2 -->
+  <section>
+    <div class="slide">
+      <div>
+        <h2>Présentation de l'entreprise</h2>
+        <p>
+          Chez <strong>Wednesday</strong>, nous concevons des jeux pour tous les univers et tous les publics.  
+          Notre spécialité : imaginer des expériences ludiques qui abordent des thématiques sociales et sociétales fortes, en mettant en avant l’humain, la mémoire, l’inclusion, les relations ou encore les enjeux de société contemporains.
+        </p>
+      </div>
+      <img src="persona.png" alt="Moodboard rétrogaming" />
+    </div>
+  </section>
+
+  <!-- Slide 3 -->
+  <section>
+    <div class="slide">
+      <div>
+        <h2>Équipe</h2>
+        <p>
+          Wednesday est un studio de game design fondé en 2025 à Marseille.  
+          Composé de quatre profils complémentaires (CEO, CTO, DA, CMO), il crée des expériences ludiques qui transforment des thématiques sociales et sociétales en univers accessibles, engageants et mémorables.
+        </p>
+      </div>
+      <img src="moodboard-02.png" alt="Moodboard équipe" />
+    </div>
+  </section>
+
+  <!-- Slide 4 -->
+  <section>
+    <div class="slide">
+      <div>
+        <h2>Étoiles Oubliées</h2>
+        <p>
+          Un jeu narratif 8-bit où la mémoire devient un labyrinthe. 
+          
+          <p> 🕹 Le labyrinthe = la mémoire.</p>
+          <p> 👾 Le monstre = la perte de mémoire.</p>
+          <p> 🪐 L’espace = l’esprit humain.</p>
+          
+        </p>
+      </div>
+      <img src="enigme-01.png" alt="Souvenirs des années passées" />
+    </div>
+  </section>
+
+  <!-- Slide 5 -->
+  <section>
+    <div class="slide">
+      <div>
+        <h2>Gameplay</h2>
+        <p>
+          Explorer le labyrinthe, répondre à des questions en lien avec la culture générale et qui sollicitent la mémoire du joueur.
+
+        </p>
+        <p>4 thématiques = 4 direction dans le labyrinthe:</p>
+        <ol>
+          <li>Souvenirs des années passées</li>
+          <li>Cuisine et recettes d’antan</li>
+          <li>Chansons et musiques d’époque</li>
+          <li>Vie quotidienne d’autrefois</li>
+        </ol>
+        <p>Chaque énigme réussie éclaire une partie du labyrinthe.</p>
+        <p>Le joueur est libre de choisir son orientation, mais il faudra explorer chaque direction pour sortir du labyrinthe.</p>
+
+        
+
+      </div>
+      <img src="enigme-02.png" alt="Cuisine et recettes d’antan" />
+    </div>
+  </section>
+
+  <!-- Slide 6 -->
+  <section>
+    <div class="slide">
+      <div>
+        <h2>Vision</h2>
+
+        <p><strong>Gameplay intuitif:</strong> commandes simples, rythme doux, design lisible.</p>
+        <p><strong>Accessibilité cognitive:</strong> langage simple, visuels explicites, feedback constant.</p>
+        <p><strong>Mécaniques de mémoire innovantes:</strong> mini-jeux ludiques qui stimulent la mémoire tout en restant poétiques.</p>
+      </div>
+      <img src="enigme-03.png" alt="Chansons et musiques d’époque" />
+    </div>
+  </section>
+
+  <!-- Slide 7 -->
+  <section>
+    <div class="slide">
+      <div>
+        <h2>Cible</h2>
+        <p>
+          Seniors (≈ 60 ans), hommes et femmes, casual gamers, cherchant une expérience douce, simple et émotionnelle, pour stimuler la mémoire avec des sujets simples et familiers.
+        </p>
+      </div>
+      <img src="persona.png" alt="Vie quotidienne d’autrefois" />
+    </div>
+  </section>
+
+</body>
+</html>
