@@ -2,8 +2,7 @@
     "name": "USS Wednesday",
     "description": "",
     "dependencies": {
-        "device": "*",
-        "uss-wednesday": "github:hugo2028/uss-wednesday#master"
+        "device": "*"
     },
     "files": [
         "main.blocks",
@@ -12,9 +11,7 @@
         "assets.json",
         "main.py",
         "images.g.jres",
-        "images.g.ts",
-        "tilemap.g.jres",
-        "tilemap.g.ts"
+        "images.g.ts"
     ],
     "testFiles": [
         "test.ts"
@@ -26,5 +23,5 @@
     "supportedTargets": [
         "arcade"
     ],
-    "preferredEditor": "blocksprj"
+    "preferredEditor": "tsprj"
 }
