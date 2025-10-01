@@ -1,410 +1,403 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Wednesday — Official Game</title>
-  <meta name="description" content="Wednesday — atmospheric narrative action-adventure. Explore, solve, survive." />
-  <meta property="og:title" content="Wednesday — Official Game" />
-  <meta property="og:description" content="Atmospheric narrative action-adventure. Explore, solve, survive." />
-  <meta property="og:type" content="game" />
-  <meta property="og:image" content="poster.png" />
-  <link rel="icon" href="favicon.ico" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Starmaze — Memory Labyrinth in Space</title>
+  <meta name="description" content="Starmaze is a gentle retro labyrinth game where memory is your map and a shadowy monster symbolizes forgetfulness. Inclusive, accessible, and made for everyone." />
+  <meta name="color-scheme" content="light dark" />
+
+  <!-- Retro face; safe fallbacks if blocked -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
   <style>
     :root{
-      --bg-dark:#071018;
-      --accent:#6EE7B7;
-      --muted:#94A3B8;
-      --card:#0B1520;
-      --glass: rgba(255,255,255,0.04);
-      --max-width:1100px;
-      --radius:12px;
+      --bg:#0b0e1a;
+      --bg-soft:#11152a;
+      --panel:#171c38;
+      --text:#f6f7ff;
+      --muted:#c7c9e1;
+      --accent:#ff6ec7;   /* warm pink */
+      --accent-2:#7af0ff; /* neon blue */
+      --accent-3:#ffd66e; /* starlight */
+      --shadow:0 6px 0 #00000055, 0 2px 0 #00000066 inset;
+      --radius:18px;
+      --space:clamp(16px, 2vw, 28px);
+      --max:1120px;
     }
-    *{box-sizing:border-box}
-    html,body{height:100%}
+
+    /* Basic reset */
+    *,*::before,*::after{ box-sizing:border-box }
+    html,body{ height:100% }
     body{
       margin:0;
-      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
-      background:
-        radial-gradient(800px 400px at 10% 10%, rgba(110,231,183,0.04), transparent 10%),
-        radial-gradient(700px 350px at 90% 90%, rgba(78,162,255,0.03), transparent 10%),
-        linear-gradient(180deg,#071018 0%, #071724 60%, #02050a 100%);
-      color:#E6EEF3;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      padding:32px 20px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
+      font: 18px/1.6 Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+      color:var(--text);
+      background: radial-gradient(1200px 800px at 20% -10%, #1a214d 0%, transparent 60%),
+                  radial-gradient(900px 600px at 100% 0%, #1e2144 0%, transparent 55%),
+                  var(--bg);
+      overflow-x:hidden;
     }
 
-    .container{
-      width:100%;
-      max-width:var(--max-width);
-      margin:auto;
-    }
-
-    header{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:16px;
-      margin-bottom:28px;
-    }
-    .brand{
-      display:flex;
-      gap:16px;
-      align-items:center;
-    }
-    .logo{
-      width:56px;
-      height:56px;
-      border-radius:12px;
-      display:inline-grid;
-      place-items:center;
-      background:linear-gradient(135deg,#0ea5a4,#5eead4 70%);
-      color:#022;
-      font-weight:800;
-      font-size:20px;
-      letter-spacing:0.5px;
-      box-shadow:0 6px 18px rgba(0,0,0,0.5), inset 0 -8px 30px rgba(255,255,255,0.02);
-    }
-    .title{
-      line-height:1;
-    }
-    .title h1{
-      font-size:18px;
-      margin:0;
-      letter-spacing:0.6px;
-    }
-    .title p{
-      margin:0;
-      color:var(--muted);
-      font-size:13px;
-    }
-
-    nav{
-      display:flex;
-      gap:12px;
-      align-items:center;
+    /* Pixel vibe helpers */
+    .pixel-border{
+      border:4px solid #00000055;
+      box-shadow: var(--shadow);
+      image-rendering: pixelated;
+      border-radius: 10px;
     }
     .btn{
-      background:transparent;
-      border:1px solid rgba(255,255,255,0.06);
-      color:var(--accent);
-      padding:8px 14px;
+      display:inline-block;
+      padding:14px 20px;
       border-radius:10px;
-      cursor:pointer;
-      font-weight:600;
-      font-size:14px;
+      background:linear-gradient(180deg, var(--accent), #e44fae 60%, #c93f9a);
+      color:#160416;
+      font-weight:800;
       text-decoration:none;
+      box-shadow:0 6px 0 #7e2b62;
+      transition:transform .06s ease, box-shadow .06s ease, filter .2s ease;
+      border:2px solid #ff9edf;
     }
-    .btn.ghost{
-      color:var(--muted);
-      border-color:transparent;
-      background:transparent;
-    }
-    .btn.primary{
-      background:linear-gradient(90deg, rgba(110,231,183,0.12), rgba(78,162,255,0.07));
-      border:1px solid rgba(110,231,183,0.14);
-      color:var(--accent);
-    }
-
-    main.hero{
-      background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
-      border-radius:20px;
-      padding:28px;
-      display:grid;
-      grid-template-columns: 1fr 420px;
-      gap:24px;
-      align-items:center;
-      box-shadow:0 10px 40px rgba(0,0,0,0.5);
+    .btn:focus{ outline:3px dashed var(--accent-2); outline-offset:4px }
+    .btn:hover{ transform:translateY(1px); box-shadow:0 4px 0 #7e2b62; filter:saturate(1.1) }
+    .btn.secondary{
+      background:linear-gradient(180deg, var(--accent-2), #4bc5d1 60%, #3ba9b5);
+      color:#041316;
+      border-color:#bff6ff;
+      box-shadow:0 6px 0 #1b6a73;
     }
 
-    .intro h2{
-      margin:0 0 12px 0;
-      font-size:34px;
-      line-height:1.02;
-      letter-spacing:-0.6px;
-      color:#EFFFF6;
+    /* STARFIELD */
+    .stars,.stars2,.stars3{
+      position:fixed; inset:0; z-index:-1; background:transparent;
+      background-image:
+        radial-gradient(2px 2px at 20% 30%, #ffffffaa 50%, transparent 51%),
+        radial-gradient(2px 2px at 80% 10%, #ffffffdd 50%, transparent 51%),
+        radial-gradient(1px 1px at 60% 70%, #ffffffbb 50%, transparent 51%),
+        radial-gradient(1px 1px at 10% 80%, #ffffff99 50%, transparent 51%);
+      animation: twinkle 9s linear infinite;
+      opacity:.8;
+      pointer-events:none;
     }
-    .intro p.lead{
-      margin:0 0 20px 0;
-      color:var(--muted);
-      font-size:15px;
-      max-width:56ch;
+    .stars2{ filter:blur(0.5px); animation-duration:12s; opacity:.6 }
+    .stars3{ filter:blur(1px); animation-duration:16s; opacity:.4 }
+    @keyframes twinkle{
+      0%,100%{ transform:translateY(0) }
+      50%{ transform:translateY(-10px) }
     }
-    .cta-row{display:flex;gap:12px;align-items:center}
-    .meta{
-      margin-top:18px;
-      display:flex;
-      gap:18px;
-      color:var(--muted);
-      font-size:13px;
-      align-items:center;
-    }
-    .tag{
-      background:var(--glass);
-      padding:6px 10px;
-      border-radius:999px;
-      color:var(--muted);
-      font-weight:600;
-      font-size:12px;
+    @media (prefers-reduced-motion: reduce){
+      .stars,.stars2,.stars3{ animation:none }
+      .btn{ transition:none }
     }
 
-    .hero-media{
-      position:relative;
-      display:flex;
-      justify-content:center;
-      align-items:center;
+    /* Header */
+    header{
+      position:sticky; top:0; backdrop-filter: blur(6px);
+      background:linear-gradient(180deg, #0b0e1acc, #0b0e1a00);
+      border-bottom:1px solid #ffffff0e;
+      z-index:40;
     }
-    .card{
-      width:100%;
-      max-width:420px;
-      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(2,5,10,0.12));
-      border-radius:14px;
-      overflow:hidden;
-      border:1px solid rgba(255,255,255,0.03);
-      box-shadow:0 8px 30px rgba(3,6,12,0.6);
+    .nav{
+      max-width:var(--max); margin:0 auto; padding:10px var(--space);
+      display:flex; align-items:center; gap:16px; justify-content:space-between;
     }
-    .poster{
-      width:100%;
-      height:240px;
-      background:
-        linear-gradient(180deg, rgba(2,8,11,0.2), rgba(0,0,0,0.35)),
-        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800"><rect width="100%" height="100%" fill="%230a1620"/><g fill="%236ee7b7" font-family="sans-serif" font-size="48" opacity="0.06"><text x="60" y="120">WEDNESDAY</text><text x="60" y="200">ADVENTURE</text></g></svg>') center/cover no-repeat;
-      display:flex;
-      align-items:flex-end;
-      padding:16px;
-      color:#DFFCF1;
-      font-weight:700;
-      letter-spacing:0.8px;
+    .logo{
+      font-family:"Press Start 2P", ui-monospace, monospace;
+      letter-spacing:1px; font-size:18px; color:var(--accent-2);
+      text-shadow:0 2px 0 #000;
     }
-    .poster small{color:rgba(255,255,255,0.6);font-weight:600;font-size:12px}
-    .card-body{padding:16px;display:flex;flex-direction:column;gap:12px}
-    .platforms{display:flex;gap:8px;flex-wrap:wrap}
-    .platform{
-      background:rgba(255,255,255,0.03);
-      padding:8px 10px;
-      border-radius:8px;
-      font-size:13px;
-      color:var(--muted);
-      display:inline-flex;
-      gap:8px;
-      align-items:center;
+    nav a{
+      color:var(--muted); text-decoration:none; font-weight:600; padding:8px 12px; border-radius:8px;
+    }
+    nav a:focus{ outline:3px dashed var(--accent-2); outline-offset:4px }
+    nav a:hover{ color:var(--text) }
+
+    /* Hero */
+    .hero{
+      max-width:var(--max); margin:0 auto; padding: clamp(40px, 8vw, 120px) var(--space);
+      display:grid; grid-template-columns:1.2fr .8fr; gap:clamp(18px, 4vw, 40px); align-items:center;
+    }
+    .eyebrow{
+      font-family:"Press Start 2P", ui-monospace, monospace;
+      color:var(--accent-3); font-size:12px; letter-spacing:2px;
+    }
+    h1{
+      margin:.2em 0 .3em; font-size:clamp(34px, 5vw, 64px);
+      line-height:1.1; text-wrap:balance;
+      font-weight:800;
+      text-shadow:0 4px 0 #00000055;
+    }
+    .lead{ color:var(--muted); font-size:clamp(18px, 2.2vw, 22px) }
+    .cta{ margin-top:22px; display:flex; flex-wrap:wrap; gap:12px }
+    .hero-card{
+      background:linear-gradient(180deg, #121735, #0e132a);
+      border:1px solid #ffffff1f; padding:20px; border-radius:var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .hero-card img{
+      width:100%; height:auto; display:block; border-radius:12px;
+      border:2px solid #ffffff12; image-rendering: pixelated;
+    }
+    .hero-card figcaption{
+      font-size:14px; color:var(--muted); margin-top:8px; text-align:center;
     }
 
-    section.features{
-      margin-top:22px;
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:12px;
+    /* Sections */
+    section{ padding: 64px var(--space) }
+    .wrap{ max-width:var(--max); margin:0 auto }
+    .h2{
+      font-family:"Press Start 2P", ui-monospace, monospace;
+      font-size: clamp(22px, 3vw, 28px);
+      letter-spacing:1px; margin:0 0 14px; color:var(--accent-2);
+      text-shadow:0 2px 0 #00000055;
     }
+    .grid-2{ display:grid; grid-template-columns:1fr 1fr; gap:24px }
+    .panel{
+      background:var(--panel); border:1px solid #ffffff12; border-radius:var(--radius); padding:22px;
+      box-shadow: var(--shadow);
+    }
+    .kpi{
+      display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:12px;
+    }
+    .kpi div{ background:#0d122a; padding:12px; border-radius:12px; border:1px solid #ffffff14; text-align:center }
+    .kpi strong{ display:block; font-size:22px; color:var(--accent-3) }
+
+    /* Moodboard gallery */
+    .gallery{
+      display:grid; grid-template-columns: repeat(12, 1fr); gap:12px;
+    }
+    .gallery figure{
+      grid-column: span 4;
+      background: #0f1430; border:1px solid #ffffff1a; border-radius:14px; padding:10px;
+    }
+    .gallery img{
+      width:100%; display:block; border-radius:10px; image-rendering: pixelated;
+      aspect-ratio: 1 / 1; object-fit: cover;
+    }
+    .gallery figcaption{ font-size:14px; color:var(--muted); margin-top:6px }
+
+    /* Features list */
+    .features{ display:grid; grid-template-columns:repeat(3, 1fr); gap:14px }
     .feature{
-      background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
-      padding:14px;
-      border-radius:12px;
-      border:1px solid rgba(255,255,255,0.02);
+      background:#0d122a; border:1px solid #ffffff17; padding:18px; border-radius:14px;
     }
-    .feature h4{margin:0 0 8px 0;font-size:15px;}
-    .feature p{margin:0;color:var(--muted);font-size:13px;line-height:1.35}
+    .feature h3{
+      margin:0 0 8px; font-size:18px; color:var(--accent);
+      font-family:"Press Start 2P", ui-monospace, monospace; letter-spacing:1px;
+    }
 
-    footer{
-      margin-top:28px;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:12px;
-      color:var(--muted);
-      font-size:13px;
+    /* Newsletter (no backend; mailto fallback) */
+    .newsletter form{
+      display:flex; gap:10px; flex-wrap:wrap; margin-top:10px;
     }
+    input[type="email"]{
+      flex:1 1 260px; padding:14px 16px; border-radius:10px; border:2px solid #27305f;
+      background:#0c1026; color:var(--text); font-size:16px;
+    }
+    input[type="email"]::placeholder{ color:#93a0d7 }
+    .small{ font-size:14px; color:var(--muted) }
+
+    /* Footer */
+    footer{ padding:40px var(--space); border-top:1px solid #ffffff0e; color:var(--muted) }
+    .foot{ max-width:var(--max); margin:0 auto; display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap }
 
     /* Responsive */
-    @media (max-width:980px){
-      main.hero{grid-template-columns:1fr; padding:18px}
-      .poster{height:200px}
-      section.features{grid-template-columns:repeat(2,1fr)}
+    @media (max-width: 940px){
+      .hero{ grid-template-columns:1fr; padding-top:54px }
+      .grid-2{ grid-template-columns:1fr }
+      .features{ grid-template-columns:1fr 1fr }
+      .gallery figure{ grid-column: span 6 }
     }
-    @media (max-width:560px){
-      body{padding:18px}
-      header{flex-direction:column;align-items:flex-start;gap:12px}
-      nav{width:100%;justify-content:space-between}
-      section.features{grid-template-columns:1fr}
-      .poster{height:160px}
-    }
-
-    /* Simple modal */
-    .modal{
-      position:fixed;
-      inset:0;
-      display:none;
-      align-items:center;
-      justify-content:center;
-      background:rgba(0,0,0,0.6);
-      z-index:60;
-      padding:20px;
-    }
-    .modal.open{display:flex}
-    .modal .frame{
-      width:100%;
-      max-width:960px;
-      background:#000;
-      border-radius:10px;
-      overflow:hidden;
-      box-shadow:0 12px 40px rgba(0,0,0,0.7);
-    }
-    .close{
-      position:absolute;
-      top:18px;
-      right:22px;
-      background:rgba(255,255,255,0.04);
-      border:none;
-      color:#fff;
-      padding:8px 10px;
-      border-radius:8px;
-      cursor:pointer;
-      font-weight:700;
+    @media (max-width: 640px){
+      .features{ grid-template-columns:1fr }
+      .gallery{ gap:10px }
+      .gallery figure{ grid-column: span 12 }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <div class="brand">
-        <div class="logo" aria-hidden="true">W</div>
-        <div class="title">
-          <h1>Wednesday</h1>
-          <p>Official game — atmospheric narrative action-adventure</p>
-        </div>
-      </div>
+  <div class="stars"></div>
+  <div class="stars2"></div>
+  <div class="stars3"></div>
+
+  <header>
+    <div class="nav">
+      <div class="logo" aria-label="Starmaze">STARMAZE</div>
       <nav aria-label="Primary">
-        <a class="btn ghost" href="#features">Features</a>
-        <a class="btn ghost" href="#media">Media</a>
-        <a class="btn primary" href="#preorder">Wishlist</a>
+        <a href="#concept">Concept</a>
+        <a href="#gameplay">Gameplay</a>
+        <a href="#inclusion">Values</a>
+        <a href="#moodboard">Moodboard</a>
+        <a href="#newsletter">Updates</a>
       </nav>
-    </header>
-
-    <main class="hero" role="main">
-      <div class="intro">
-        <h2>Explore the quiet town. Uncover the hidden.</h2>
-        <p class="lead">Wednesday is an atmospheric narrative action-adventure. Investigate strange occurrences, solve environmental puzzles, and survive the unknown. Hand-crafted environments, immersive sound design, and a story that responds to your choices.</p>
-
-        <div class="cta-row">
-          <a class="btn primary" href="#preorder">Pre-order / Wishlist</a>
-          <button id="watchTrailer" class="btn" aria-haspopup="dialog">Watch Trailer</button>
-        </div>
-
-        <div class="meta" aria-hidden="false">
-          <span class="tag">Single Player</span>
-          <span>Open world · Choice-driven</span>
-          <span>Estimated 12-20 hrs</span>
-        </div>
-
-        <section id="features" class="features" aria-labelledby="features-heading">
-          <div class="feature">
-            <h4>Investigate</h4>
-            <p>Search environments for clues, interrogate characters, and unravel a layered mystery.</p>
-          </div>
-          <div class="feature">
-            <h4>Stealth & Combat</h4>
-            <p>Blend stealth with tactical confrontations — choose non-lethal or confrontational paths.</p>
-          </div>
-          <div class="feature">
-            <h4>Dynamic World</h4>
-            <p>Your choices change relationships, environments, and story outcomes across playthroughs.</p>
-          </div>
-        </section>
-      </div>
-
-      <aside class="hero-media" id="media" aria-label="Media">
-        <div class="card" role="region" aria-label="Game preview">
-          <div class="poster">
-            <div>
-              <div style="font-size:13px">Now Showing</div>
-              <small>Official Teaser</small>
-            </div>
-          </div>
-          <div class="card-body">
-            <div style="display:flex;justify-content:space-between;align-items:center">
-              <div>
-                <div style="font-weight:800">Wednesday</div>
-                <div style="color:var(--muted);font-size:13px">Available on PC · Console</div>
-              </div>
-              <div style="text-align:right">
-                <div style="font-weight:800;color:var(--accent)">Coming 2026</div>
-                <div style="color:var(--muted);font-size:12px">Early access planned</div>
-              </div>
-            </div>
-
-            <div style="margin-top:8px" class="platforms" aria-hidden="true">
-              <span class="platform">Windows</span>
-              <span class="platform">PlayStation</span>
-              <span class="platform">Xbox</span>
-            </div>
-
-            <div style="display:flex;gap:8px;margin-top:12px">
-              <a class="btn" href="#preorder">Wishlist</a>
-              <a class="btn ghost" href="#system">System Req</a>
-            </div>
-          </div>
-        </div>
-      </aside>
-    </main>
-
-    <footer>
-      <div>&copy; <span id="year"></span> Wednesday — All rights reserved.</div>
-      <div style="display:flex;gap:10px;align-items:center">
-        <a class="btn ghost" href="#" aria-label="Twitter">Twitter</a>
-        <a class="btn ghost" href="#" aria-label="Discord">Discord</a>
-        <a class="btn ghost" href="#" aria-label="Privacy">Privacy</a>
-      </div>
-    </footer>
-  </div>
-
-  <!-- Modal for trailer -->
-  <div id="modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
-    <div class="frame" role="document">
-      <video id="trailer" controls preload="metadata" style="width:100%;height:100%;display:block;background:#000">
-        <!-- Replace the src with your trailer video file path -->
-        <source src="trailer.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
-      <button id="closeModal" class="close" aria-label="Close trailer">✕</button>
     </div>
-  </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div>
+        <div class="eyebrow">RETRO 8-BIT • ACCESSIBLE • INCLUSIVE</div>
+        <h1 id="hero-title">Memory is the Maze.<br/>Love is the Compass.</h1>
+        <p class="lead">
+          In <strong>Starmaze</strong>, a gentle labyrinth adventure, each corridor is a memory and a shadowy monster
+          embodies forgetfulness. Designed with seniors in mind: big type, calm pace, and simple controls.
+        </p>
+        <div class="cta">
+          <a class="btn" href="#newsletter">Get demo updates</a>
+          <a class="btn secondary" href="#gameplay" aria-describedby="demo-note">See how it plays</a>
+        </div>
+        <p id="demo-note" class="small" style="margin-top:8px">No sign-in required. Keyboard, controller, or touch supported.</p>
+      </div>
+
+      <figure class="hero-card pixel-border">
+        <!-- Replace with a strong key art if you have one -->
+        <img alt="Grandmother-like pixel character standing on a starlit background" src="moodboard-grandma.png" />
+        <figcaption>Our hero persona — a warm, curious explorer.</figcaption>
+      </figure>
+    </section>
+
+    <!-- CONCEPT -->
+    <section id="concept" aria-labelledby="concept-h" class="wrap">
+      <h2 id="concept-h" class="h2">Concept</h2>
+      <div class="grid-2">
+        <div class="panel">
+          <p>
+            <strong>The Labyrinth = Memory.</strong> Paths appear and fade, like recollection. Stabilize memories
+            with short, soothing puzzles and light the way out. Each cleared level restores a star to a personal
+            constellation — the moments we choose to keep.
+          </p>
+          <div class="kpi" role="list">
+            <div role="listitem"><strong>8-bit</strong><span>cozy retro style</span></div>
+            <div role="listitem"><strong>No timers</strong><span>gentle pacing</span></div>
+            <div role="listitem"><strong>Inclusive</strong><span>LGBTQ+ stories</span></div>
+          </div>
+        </div>
+        <div class="panel">
+          <h3 style="margin:0 0 6px">Why it matters</h3>
+          <p>
+            Starmaze celebrates memory without medicalizing it. It’s about connection:
+            partners, friends, and chosen family — across generations. Designed for accessibility:
+            large text, high contrast, simple inputs, optional hints, and audio cues.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- GAMEPLAY -->
+    <section id="gameplay" aria-labelledby="gameplay-h" class="wrap">
+      <h2 id="gameplay-h" class="h2">Gameplay</h2>
+      <div class="features">
+        <div class="feature">
+          <h3>Explore</h3>
+          <p>Navigate a serene maze that softly shifts over time. Keyboard arrows, WASD, or swipe/tap.</p>
+        </div>
+        <div class="feature">
+          <h3>Recall</h3>
+          <p>Short memory puzzles: match pairs, repeat colors, order story frames. No fail state; gentle retries.</p>
+        </div>
+        <div class="feature">
+          <h3>Shine</h3>
+          <p>Each solved memory lights a beacon, pushing back the <em>Forgetfulness</em> — an abstract, friendly shadow.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- INCLUSION -->
+    <section id="inclusion" aria-labelledby="inclusion-h" class="wrap">
+      <h2 id="inclusion-h" class="h2">Values & Inclusion</h2>
+      <div class="panel">
+        <p>
+          Stories feature LGBTQ+ characters across life stages — tenderness, humor, everyday courage. We partner with
+          community voices and keep representation authentic and joyful.
+        </p>
+        <ul>
+          <li>Optional pronouns & names</li>
+          <li>Subtitles & readable captions</li>
+          <li>Color-blind friendly palette & strong contrast</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- MOODBOARD -->
+    <section id="moodboard" aria-labelledby="moodboard-h" class="wrap">
+      <h2 id="moodboard-h" class="h2">Moodboard (8-bit)</h2>
+      <div class="gallery" role="list">
+        <figure role="listitem">
+          <!-- 🔁 Replace with your image path -->
+          <img src="moodboard-01.png" alt="Pixel art poster saying Memory Space Labyrinth with maze and space icons" />
+          <figcaption>Maze as memory — soft starlit palette.</figcaption>
+        </figure>
+        <figure role="listitem">
+          <!-- 🔁 Replace with your image path -->
+          <img src="moodboard-02.png" alt="Poster: Labyrinth in Space Memory with rocket and neon maze tiles" />
+          <figcaption>Retro typography & playful icons.</figcaption>
+        </figure>
+        <figure role="listitem">
+          <!-- 🔁 Replace with your image path -->
+          <img src="moodboard-03.png" alt="Pixel character of a senior person in warm colors" />
+          <figcaption>Persona sprite — warm & relatable.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- NEWSLETTER -->
+    <section id="newsletter" aria-labelledby="newsletter-h" class="wrap newsletter">
+      <h2 id="newsletter-h" class="h2">Get updates & demo access</h2>
+      <div class="panel">
+        <p>Leave your email and we’ll send a playable web demo link when it’s ready. No spam.</p>
+        <!-- No backend provided: mailto fallback; replace with your provider later -->
+        <form action="mailto:team@yourstudio.com" method="post" enctype="text/plain">
+          <label class="sr-only" for="email">Email</label>
+          <input id="email" name="email" type="email" inputmode="email" placeholder="you@example.com" required />
+          <button class="btn" type="submit">Notify me</button>
+        </form>
+        <p class="small" style="margin-top:8px">By submitting, you agree to be contacted about Starmaze updates.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="foot">
+      <div>© <span id="year"></span> NOM DE L’EQUIPE — Starmaze</div>
+      <div>
+        <a href="#concept">Concept</a> ·
+        <a href="#inclusion">Values</a> ·
+        <a href="#moodboard">Moodboard</a>
+      </div>
+    </div>
+  </footer>
 
   <script>
-    // Small interactivity: trailer modal and year
+    // small helper: current year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // enable smooth anchor scrolling without motion sickness
     (function(){
-      const modal = document.getElementById('modal');
-      const btn = document.getElementById('watchTrailer');
-      const close = document.getElementById('closeModal');
-      const video = document.getElementById('trailer');
-      const yearEl = document.getElementById('year');
-
-      yearEl.textContent = new Date().getFullYear();
-
-      function openModal(){
-        modal.classList.add('open');
-        modal.setAttribute('aria-hidden','false');
-        try { video.currentTime = 0; video.play(); } catch(e){}
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if(!prefersReduced){
+        document.querySelectorAll('a[href^="#"]').forEach(a=>{
+          a.addEventListener('click', e=>{
+            const id = a.getAttribute('href').slice(1);
+            const el = document.getElementById(id);
+            if(el){
+              e.preventDefault();
+              el.scrollIntoView({behavior:'smooth', block:'start'});
+              history.pushState(null, '', '#'+id);
+            }
+          });
+        });
       }
-      function closeModal(){
-        modal.classList.remove('open');
-        modal.setAttribute('aria-hidden','true');
-        try { video.pause(); } catch(e){}
-      }
-      btn.addEventListener('click', openModal);
-      close.addEventListener('click', closeModal);
-      modal.addEventListener('click', function(e){
-        if(e.target === modal) closeModal();
-      });
-      // Escape key
-      document.addEventListener('keydown', function(e){
-        if(e.key === 'Escape' && modal.classList.contains('open')) closeModal();
-      });
     })();
   </script>
+
+  <!-- Visually-hidden class -->
+  <style>
+    .sr-only{
+      position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0
+    }
+  </style>
 </body>
-</html></div>
+</html>
